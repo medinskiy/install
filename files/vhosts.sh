@@ -49,7 +49,7 @@ read SITE_NAME
 if [ ! ${SITE_NAME} ]; then return 1; fi;
 
 
-cd "${DIR}/../.."
+cd "${DIR}/.."
 ROOT_DIR=`pwd`
 cd ${DIR}
 SITE_ROOT="/var/www/${SITE_NAME}"
