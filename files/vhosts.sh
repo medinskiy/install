@@ -48,11 +48,14 @@ echo "${YELLOW} Добавить домен: ${BREAK}\c"
 read SITE_NAME
 if [ ! ${SITE_NAME} ]; then return 1; fi;
 
-ROOT_DIR="${DIR}/../.."
+
+cd "${DIR}/../.."
+ROOT_DIR=`pwd`
+cd ${DIR}
 SITE_ROOT="/var/www/${SITE_NAME}"
 WEB_DIR="${SITE_ROOT}/www"
 LOG_DIR="${SITE_ROOT}/log"
-CONF_DIR="${DIR}/../config"
+CONF_DIR="${ROOT_DIR}/config"
 
 
 echo "${WHITE} Creating paths${BREAK}"
@@ -60,9 +63,6 @@ createpath "${SITE_ROOT}"
 createpath "${ROOT_DIR}/www"
 createpath "${ROOT_DIR}/log"
 createpath "${CONF_DIR}"
-cd ${CONF_DIR}
-CONF_DIR=`pwd`
-cd ${DIR}
 
 
 echo "${WHITE} Link paths\c${BREAK}"

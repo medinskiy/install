@@ -19,7 +19,7 @@ composerInstall(){
 echo "${WHITE} Проверка установки PHP7.2\c${BREAK}"
 sleep 1 & spinner
 
-pkgs="bz2 common cgi cli bcmath mysql sqlite3 json opcache sybase curl xml xsl intl zip mbstring readline gd xmlrpc"
+pkgs="bz2 common cgi cli bcmath mysql sqlite3 json opcache sybase curl xml xsl intl zip mbstring readline gd xmlrpc xdebug"
 
 if which php > /dev/null; then
     echo "${OK}"
@@ -35,7 +35,7 @@ else
             echo "${RED} PHP7.2 пакет не найден. Добавте репозиторий ${FAIL}"
         else
             echo "${WHITE} Установка PHP7.2\c${BREAK}"
-            sudo apt-get install php7.2 libapache2-mod-php7.2 -y >> install.log & spinner
+            sudo apt-get install php7.2 libapache2-mod-php7.2 zip unzip -y >> install.log & spinner
             echo "${OK}"
             if ! which php > /dev/null; then
                 echo "${RED} PHP7.2 не удалось установить! ${FAIL}"

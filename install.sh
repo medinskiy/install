@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-. "/etc/lsb-release"
-RELEASE=$(echo ${DISTRIB_RELEASE} | grep -Po '^\d+')
+RELEASE=$(lsb_release -sc)
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 . "${DIR}/files/add.sh"
 
@@ -45,19 +44,21 @@ while true; do
 	echo "1) Update packages"
 	echo "2) Add Repo"
 	echo "3) Install Apache"
-	echo "4) Install MySQL"
-	echo "5) Install PHP"
-	echo "6) Add Host"
-	echo "7) Exit"
+	echo "4) Install NodeJS"
+	echo "5) Install MySQL"
+	echo "6) Install PHP"
+	echo "7) Add Host"
+	echo "8) Exit"
 
 	read -p "Select: " command
 	case "${command}" in
 		1 ) clear && update                     && echo "Press Enter \c" && read i;;
 		2 ) clear && addrepo && update          && echo "Press Enter \c" && read i;;
 		3 ) clear && . "${DIR}/files/apache.sh" && echo "Press Enter \c" && read i;;
-		4 ) clear && . "${DIR}/files/mysql.sh"  && echo "Press Enter \c" && read i;;
-		5 ) clear && . "${DIR}/files/php.sh"    && echo "Press Enter \c" && read i;;
-		6 ) clear && . "${DIR}/files/vhosts.sh" && echo "Press Enter \c" && read i;;
-		7 ) break;;
+		4 ) clear && . "${DIR}/files/node.sh"   && echo "Press Enter \c" && read i;;
+		5 ) clear && . "${DIR}/files/mysql.sh"  && echo "Press Enter \c" && read i;;
+		6 ) clear && . "${DIR}/files/php.sh"    && echo "Press Enter \c" && read i;;
+		7 ) clear && . "${DIR}/files/vhosts.sh" && echo "Press Enter \c" && read i;;
+		8 ) break;;
 	esac
 done
