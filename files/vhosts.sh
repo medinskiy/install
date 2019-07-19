@@ -75,7 +75,7 @@ echo "${OK}"
 
 
 echo "${WHITE} Set permissions\c${BREAK}"
-sudo chown ruslan:ruslan -R ${SITE_ROOT}
+sudo chown ruslan:ruslan -R ${ROOT_DIR}
 sudo chmod 0755 -R ${WEB_DIR}
 sudo chmod 0777 -R ${LOG_DIR}
 sudo chmod 0777 -R ${CONF_DIR}
