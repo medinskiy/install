@@ -74,14 +74,6 @@ sudo ln -s "${ROOT_DIR}/log" "${LOG_DIR}"
 echo "${OK}"
 
 
-echo "${WHITE} Set permissions\c${BREAK}"
-sudo chown ruslan:ruslan -R ${ROOT_DIR}
-sudo chmod 0755 -R ${WEB_DIR}
-sudo chmod 0777 -R ${LOG_DIR}
-sudo chmod 0777 -R ${CONF_DIR}
-echo "${OK}"
-
-
 echo "${WHITE} Creating Virtual Host\c${BREAK}"
 if [ -f "${CONF_DIR}/${SITE_NAME}.conf" ]; then sudo rm "${CONF_DIR}/${SITE_NAME}.conf"; fi
 sudo cat <<EOF >> "${CONF_DIR}/${SITE_NAME}.conf"
@@ -152,7 +144,7 @@ echo "${OK}"
 
 
 echo "${WHITE} Create index file\c${BREAK}"
-cat <<EOF >> "${WEB_DIR}/index.html"
+sudo cat <<EOF >> "${WEB_DIR}/index.html"
 <!DOCTYPE html>
 <html>
   <head>
@@ -168,11 +160,17 @@ EOF
 echo "${OK}"
 
 
+echo "${WHITE} Set permissions\c${BREAK}"
+sudo chown ruslan:ruslan -R ${ROOT_DIR}
+sudo chmod 0755 -R ${WEB_DIR}
+sudo chmod 0777 -R ${LOG_DIR}
+echo "${OK}"
+
+
 echo "${WHITE} Restarting Apache2\c${BREAK}"
 sudo a2enmod ssl >> /dev/null
 sudo service apache2 restart
 echo "${OK}"
-
 
 
 echo "${CYAN} Finished! ${BREAK}"
